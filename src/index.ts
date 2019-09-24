@@ -1,23 +1,10 @@
-import axios from "axios";
+import { Company } from "./Company";
+import Map from "./Map";
+import { User } from "./User";
 
-const url = "http://jsonplaceholder.typicode.com/todos/1";
-
-interface Todo {
-	id: number;
-	title: string;
-	completed: boolean;
-}
-
-function getLog(completed: boolean, id: number, title: string): void {
-	console.log(`
-        The todo item:\n
-        ID: ${id},
-        Title: ${title},
-        Is it finished?: ${completed}.
-    `);
-}
-
-axios.get(url).then(response => {
-	const { id, title, completed } = response.data as Todo;
-	return getLog(completed, id, title );
-});
+const myUser = new User();
+const myCompany = new Company();
+const mapContainer = document.getElementById("map-container");
+const map = new Map(mapContainer);
+map.addMarker(myCompany);
+map.addMarker(myUser);

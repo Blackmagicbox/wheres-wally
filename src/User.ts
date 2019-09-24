@@ -1,12 +1,21 @@
-import faker from 'faker';
+import { address, name } from "faker";
 
-class User {
-	name:string;
-	
-	location: {
-		lat: number;
-		lng: number;
-	};
+export class User {
+  public name: string;
+  public location: {
+    lat: number;
+    lng: number;
+  };
+
+  constructor() {
+    this.name = name.firstName();
+    this.location = {
+      lat: parseFloat(address.latitude()),
+      lng: parseFloat(address.longitude()),
+    };
+  }
+
+  public renderContent() {
+    return `${this.name} is here!`;
+  }
 }
-
-export default User;
